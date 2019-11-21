@@ -68,7 +68,7 @@ int main() {
            *   Maybe use another PID controller to control the speed!
            */
 		  pid.UpdateError(cte);
-
+		  steer_value = pid.TotalError();
 
 
           // DEBUG
