@@ -23,9 +23,10 @@ This factor handles overshoot due to the P factor.
 However, this cannot handle incomplete wheel alignment bias. Using P & D, the car started smoothly, but if the wheel alignment of I could not be adjusted, the vibration will start.Please see the video .[YouTube Link](https://youtu.be/Z8RbcNdPRtI)
 
 ## Describe how the final hyperparameters were chosen
-To choose the final parameter for P, I and D.  
-I used a manual testing. 
-
+I used a manual testing to choose the final parameter for P, I and D.  
+```
+Kp = -0.15,  Ki = -0.0,  Kd = -0.8
+```
 ### Consideration of two points.
 1. Combination control of steering angle and throttle
 I confirmed the phenomenon of going out of course on a sharp curve. high-speed driving and a high steer-angle  are easily to go out of the course, and can happen in a real car. In other words, measures were taken to prevent out-of-course by making the handle angle and throttle inversely proportional.
