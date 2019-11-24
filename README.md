@@ -1,8 +1,43 @@
 # CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
+[![Dataset 1](/data/pid.PNG)](https://youtu.be/Z8RbcNdPRtI)
+
+[YouTube Link](https://youtu.be/Z8RbcNdPRtI)
 
 ---
+# Reflection
+---
+This project is about implementing a PID controller to drive an autonomous car on a track.
 
+The input is CTE (cross track error with the reference line) and output is steering control and speed. The target is to drive car autonomously within lane safely.
+## Features of each parameter of PID
+### P:
+This element tries to pursue the baseline, but always overshoots on either side. Therefore, the vehicle will continue to vibrate. Please see the video .[YouTube Link](https://youtu.be/KnodGb4yiM4)
+
+### I:
+This element handles wheel bias due to imperfect wheel alignment.
+However, this can cause a big overshoot at the start and you need to be aware of the D factor
+
+### D: 
+This factor handles overshoot due to the P factor. 
+However, this cannot handle incomplete wheel alignment bias. Using P & D, the car started smoothly, but if the wheel alignment of I could not be adjusted, the vibration will start.Please see the video .[YouTube Link](https://youtu.be/Z8RbcNdPRtI)
+
+## Describe how the final hyperparameters were chosen
+To choose the final parameter for P, I and D.  
+I used a manual testing. 
+
+### Consideration of two points.
+1. Combination control of steering angle and throttle
+I confirmed the phenomenon of going out of course on a sharp curve. high-speed driving and a high steer-angle  are easily to go out of the course, and can happen in a real car. In other words, measures were taken to prevent out-of-course by making the handle angle and throttle inversely proportional.
+```
+double throttle = 0.3 + 0.40 * (0.05 - abs(steer_value)) / (0.05 + abs(steer_value)); // main.cpp (Line 76) 
+```
+2. Implementation of "Twiddle"
+I set it to look for the best parameters, but this didn't work as a result.
+```
+ pid.Twiddle(cte);  // main.cpp (Line 73) 
+```
+---
 ## Dependencies
 
 * cmake >= 3.5
