@@ -68,6 +68,10 @@ int main() {
            *   Maybe use another PID controller to control the speed!
            */
 		  pid.UpdateError(cte);
+
+		  // Twiddle? uncomment below
+		  //pid.Twiddle(cte); // <-----------------------------------try twiddle-----------------
+
 		  steer_value = pid.TotalError();
 		  double throttle = 0.3 + 0.40 * (0.05 - abs(steer_value)) / (0.05 + abs(steer_value));
 
