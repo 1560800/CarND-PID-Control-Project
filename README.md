@@ -28,12 +28,12 @@ I used a manual testing to choose the final parameter for P, I and D.
 Kp = -0.15,  Ki = -0.0,  Kd = -0.8
 ```
 ### Consideration of two points.
-1. Combination control of steering angle and throttle
+1. Combination control of steering angle and throttle  
 I confirmed the phenomenon of going out of course on a sharp curve. high-speed driving and a high steer-angle  are easily to go out of the course, and can happen in a real car. In other words, measures were taken to prevent out-of-course by making the handle angle and throttle inversely proportional.
 ```
 double throttle = 0.3 + 0.40 * (0.05 - abs(steer_value)) / (0.05 + abs(steer_value)); // main.cpp (Line 76) 
 ```
-2. Implementation of "Twiddle"
+2. Implementation of "Twiddle"  
 I set it to look for the best parameters, but this didn't work as a result.
 ```
  pid.Twiddle(cte);  // main.cpp (Line 73) 
